@@ -1,0 +1,6 @@
+.hidden {
+  display: none;
+  color: green;
+  margin-top: 0.5rem;
+  font-weight: bold;
+}
