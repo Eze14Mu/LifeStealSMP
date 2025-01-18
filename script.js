@@ -1,22 +1,22 @@
-// Fetch and display player stats from a mock API
+// Fetch and display player stats from Mojang API
 const fetchPlayerStats = async () => {
-    const playerStatsContainer = document.getElementById('player-stats');
-    playerStatsContainer.innerHTML = '<p>Loading...</p>';
+    const statsContainer = document.getElementById('player-stats');
 
     try {
-        const response = await fetch('https://api.mojang.com/users/profiles/minecraft/playername');
+        const response = await fetch('https://api.mojang.com/users/profiles/minecraft/Notch');
+        if (!response.ok) throw new Error('Player not found');
         const data = await response.json();
 
-        playerStatsContainer.innerHTML = `
+        statsContainer.innerHTML = `
             <div>
-                <h3>${data.name}</h3>
+                <h3>Player Name: ${data.name}</h3>
                 <p>UUID: ${data.id}</p>
             </div>
         `;
     } catch (error) {
-        playerStatsContainer.innerHTML = '<p>Failed to load player stats. Try again later.</p>';
+        statsContainer.innerHTML = '<p>Error fetching player stats.</p>';
     }
 };
 
-// Call the function on page load
+// Load player stats on page load
 fetchPlayerStats();
